@@ -20,6 +20,8 @@ To install the plugin just follow these simple steps:
 4. Locate the Order Categories plugin and click on the activate link
 5. That's it, now you can go to Manage > Order Categories and reorder the categories the way you want.
 
+== Frequently Asked Questions ==
+
 = Does this plugin require me to overwrite WordPress core files? =
 
 No, there is nothing more you have to do except uploading and activating the plugin.
