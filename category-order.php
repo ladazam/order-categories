@@ -2,7 +2,7 @@
 /*
 Plugin Name: Category Order
 Plugin URI: http://wpguy.com/plugins/category-order
-Description: The Order Categories plugin allows you to easily reorder your categories the way you want via drag and drop.
+Description: The Category Order plugin allows you to easily reorder your categories the way you want via drag and drop.
 Author: Wessley Roche
 Version: 1.0
 Author URI: http://wpguy.com/
