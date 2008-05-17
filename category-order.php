@@ -4,7 +4,7 @@ Plugin Name: Category Order
 Plugin URI: http://wpguy.com/plugins/category-order
 Description: The Category Order plugin allows you to easily reorder your categories the way you want via drag and drop.
 Author: Wessley Roche
-Version: 1.0
+Version: 1.0.1
 Author URI: http://wpguy.com/
 */
 
@@ -155,14 +155,14 @@ function wpguy_category_order_init(){
 				<div id="message" class="fade updated"><p>Changes Saved.</p></div>
 			<?php endif; ?>
 			
-			<form class="GET">
+			<form action="<?php bloginfo("wpurl") ?>/wp-admin/edit.php" class="GET">
 				<input type="hidden" name="page" value="wpguy_category_order_options" />
 				<input type="hidden" id="category_order" name="category_order" size="500" value="<?php echo $order; ?>">
 				<input type="hidden" name="childrenOf" value="<?php echo $childrenOf; ?>" />
 			<h2>Category Order</h2>
 			
 			<?php if($childrenOf != 0): ?>
-			<p><a href="<?php bloginfo("url"); ?>/wp-admin/edit.php?page=wpguy_category_order_options&amp;childrenOf=<?php echo $father; ?>">&laquo; Back</a></p>
+			<p><a href="<?php bloginfo("wpurl"); ?>/wp-admin/edit.php?page=wpguy_category_order_options&amp;childrenOf=<?php echo $father; ?>">&laquo; Back</a></p>
 			<h3><?php echo $current_name; ?></h3>
 			<?php else: ?>
 			<h3>Top level categories</h3>
@@ -177,7 +177,7 @@ function wpguy_category_order_init(){
 							
 							echo "<div id='item_$category->cat_ID' class='lineitem'>";
 							if(get_categories("hide_empty=0&child_of=$category->cat_ID")){
-								echo "<span class=\"childrenlink\"><a href=\"".get_bloginfo("url")."/wp-admin/edit.php?page=wpguy_category_order_options&childrenOf=$category->cat_ID\">More &raquo;</a></span>";
+								echo "<span class=\"childrenlink\"><a href=\"".get_bloginfo("wpurl")."/wp-admin/edit.php?page=wpguy_category_order_options&childrenOf=$category->cat_ID\">More &raquo;</a></span>";
 							}
 							echo "<h4>$category->name</h4>";
 							echo "</div>\n";
