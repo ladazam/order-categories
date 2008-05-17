@@ -101,7 +101,6 @@ function wpguy_category_order_init(){
 		$options = get_option("wpguy_category_order");
 		$order = $options[$childrenOf];
 		
-		error_log(print_r($options, true));
 		
 		if(isset($_GET['submit'])){
 			$options[$childrenOf] = $order = $_GET['category_order'];
@@ -150,7 +149,6 @@ function wpguy_category_order_init(){
 			usort($categories, "wpguy_category_order_compare");
 			
 			
-				error_log(print_r($categories, true));
 		}
 		
 		?>
