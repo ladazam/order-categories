@@ -4,7 +4,7 @@ Plugin Name: Category Order
 Plugin URI: http://wpguy.com/plugins/category-order
 Description: The Category Order plugin allows you to easily reorder your categories the way you want via drag and drop.
 Author: Wessley Roche
-Version: 1.0.1
+Version: 1.0.2
 Author URI: http://wpguy.com/
 */
 
@@ -54,18 +54,18 @@ function wpguy_category_order_init(){
 				$i=0;
 				foreach($ids as $id){
 					if($id != ""){
-						foreach($terms as $category){
+						foreach($terms as $n => $category){
 							if(is_object($category) && $category->term_id == $id){
-								$category->order = $i;
+								$terms[$n]->order = $i;
 								$i++;
 							}
 						}
 					}
 					
 					// Add order 99999 to every category that wasn't manually ordered (so they appear at the end). This just usually happens when you've added a new category but didn't order it.
-					foreach($terms as $category){
+					foreach($terms as $n => $category){
 						if(is_object($category) && !isset($category->order)){
-							$category->order = 99999;
+							$terms[$n]->order = 99999;
 						}
 					}
 				
@@ -97,8 +97,11 @@ function wpguy_category_order_init(){
 			$childrenOf = 0;
 		}
 		
+		
 		$options = get_option("wpguy_category_order");
 		$order = $options[$childrenOf];
+		
+		error_log(print_r($options, true));
 		
 		if(isset($_GET['submit'])){
 			$options[$childrenOf] = $order = $_GET['category_order'];
@@ -130,21 +133,24 @@ function wpguy_category_order_init(){
 			foreach($order_array as $id){
 				foreach($categories as $n => $category){
 					if(is_object($category) && $category->term_id == $id){
-						$category->order = $i;
+						$categories[$n]->order = $i;
 						$i++;
 					}
 				}
 				
 				
-				foreach($categories as $category){
+				foreach($categories as $n => $category){
 					if(is_object($category) && !isset($category->order)){
-						$category->order = 99999;
+						$categories[$n]->order = 99999;
 					}
 				}
 
 			}
 			
 			usort($categories, "wpguy_category_order_compare");
+			
+			
+				error_log(print_r($categories, true));
 		}
 		
 		?>
