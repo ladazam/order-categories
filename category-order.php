@@ -4,7 +4,7 @@ Plugin Name: Category Order
 Plugin URI: http://wpguy.com/plugins/category-order
 Description: The Category Order plugin allows you to easily reorder your categories the way you want via drag and drop.
 Author: Wessley Roche
-Version: 1.0.2
+Version: 1.0.3
 Author URI: http://wpguy.com/
 */
 
@@ -84,7 +84,13 @@ function wpguy_category_order_init(){
 	function wpguy_category_order_compare($a, $b) {
 		
 		if ($a->order == $b->order) {
-			return 0;
+			
+			if($a->name == $b->name){
+				return 0;
+			}else{
+				return ($a->name < $b->name) ? -1 : 1;
+			}
+			
 		}
 		
 	    return ($a->order < $b->order) ? -1 : 1;
